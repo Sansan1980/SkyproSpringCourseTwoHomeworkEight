@@ -1,6 +1,7 @@
 package pro.sky.skyprospringcoursetwohomeworkeight;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface EmployeeService {
     String addEmployee(String name, String surname);
@@ -12,18 +13,18 @@ public interface EmployeeService {
 
     Map<String, Employee> printData();
 
-  String addPrintEmployeeKey();
-/*
-    static int calculateAmountMonthlySalaryCosts();
+    String addPrintEmployeeKey();
 
-    static Employee searchEmployeeSalaryMinimum();
+   int calculateAmountMonthlySalaryCosts();
 
-    static Employee searchEmployeeSalaryMaximum();
+    Employee searchEmployeeSalaryMinimum();
 
-    static int numberEmployees();
+    Employee searchEmployeeSalaryMaximum();
 
-    static int сalculateAverageSalary();
+    int numberEmployees();
 
-    static void getFullNamesAllEmployees();*/
+    int сalculateAverageSalary();
+
+    void getFullNamesAllEmployees();
 
 }

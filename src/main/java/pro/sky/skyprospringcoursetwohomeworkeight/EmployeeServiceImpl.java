@@ -2,16 +2,16 @@ package pro.sky.skyprospringcoursetwohomeworkeight;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
+import static java.lang.System.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     // private static List<Employee> employeesList = new ArrayList<>();
     private static Map<String, Employee> employeesMap = new HashMap();
+
 
     public String addEmployee(String name, String surname) {
         if (employeesMap.size() >= 11) {
@@ -67,22 +67,26 @@ public class EmployeeServiceImpl implements EmployeeService {
        }*/
 
         Set<String> keys = employeesMap.keySet();
+       // String newLine = System.getProperty("line.separator");
+        Collection<Employee> values = employeesMap.values();
+       // String s1 = String.format("%s%n%s","\n", keys);
+        String s = "Значения :" + values + lineSeparator() +
+                "Ключи : " + keys;
+        return s; // непонимаю как вернуть на страницу браузера две строки "значенbя-Employee" b "ключи-keys"
 
-        return  "Ключи: " + keys;
-
-       /* ArrayList<Employee> values = new ArrayList<>(employeesMap.values());
-        System.out.println("Значения: " + values);*/
 
     }
-/*
+
+
     public int calculateAmountMonthlySalaryCosts() {
-        int summ = 0;
+       /* int summ = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 summ = employees[i].getSalary() + summ;
             }
         }
-        return summ;
+        return summ;*/
+
     }
 
 
@@ -134,7 +138,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 System.out.println("ФИО сотрудника :" + employees[i].getFulName());
             }
         }
-    }*/
+    }
+
 
 
 //--//--
