@@ -5,34 +5,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.skyprospringcoursetwohomeworkeight.Employee;
+import pro.sky.skyprospringcoursetwohomeworkeight.service.EmployeeService;
 
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(path =("/departments"))
+@RequestMapping(path = ("/departments"))
 @RestController
 public class DepartmentController {
-  ////
-         @GetMapping("/max-salary")
-    public Employee employeeWithSalaryMax(@RequestParam("departmentId") int departmentId){
 
-         }
-            ​
-  //  Возвращать сотрудника с минимальной зарплатой на основе номера отдела.
+  private final EmployeeService employeeService;
 
-            ​
-//    Возвращать всех сотрудников по отделу.
-@GetMapping(value = "/all",params = "departmentId")
-public List<Employee> employeeFromDepartment(@RequestParam("departmentId") int departmentId){
+    public DepartmentController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+    ////
+    //  Возвращать сотрудника с максимальной зарплатой на основе номера отдела.
+    @GetMapping("/max-salary")
+    public Employee employeeWithSalaryMax(@RequestParam("departmentId") int departmentId) {
+        return employeeWithSalaryMax(departmentId);
+    }
 
-}
+    //  Возвращать сотрудника с минимальной зарплатой на основе номера отдела.
+    @GetMapping("/min-salary")
+    public Employee employeeWithSalaryMin(@RequestParam("departmentId") int departmentId) {
+        return employeeWithSalaryMin(departmentId);
+    }
 
-            ​
- //   Возвращать всех сотрудников с разделением по отделам.
- @GetMapping(value = "/all")
- public Map<Integer,List<Employee>> employees(){
+    //    Возвращать всех сотрудников по отделу.
+    @GetMapping(value = "/all", params = "departmentId")
+    public List<Employee> employeeFromDepartmentId(@RequestParam("departmentId") int departmentId) {
+        return employeeFromDepartmentId(departmentId);
+    }
 
- }
+    //   Возвращать всех сотрудников  с разделением по отделам.
+    @GetMapping(value = "/all")
+    public List<Employee> allEmployeesById() {
+        return allEmployeesById();
+    }
 
 
 }

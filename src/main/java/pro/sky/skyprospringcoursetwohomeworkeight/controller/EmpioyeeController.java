@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping(path =("/employee"))
 @RestController
 public class EmpioyeeController {
-    private final EmployeeService employeeService;
+   private final EmployeeService employeeService;
 
     public EmpioyeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;

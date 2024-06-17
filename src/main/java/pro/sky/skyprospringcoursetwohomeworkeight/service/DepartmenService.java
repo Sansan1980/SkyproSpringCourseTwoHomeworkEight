@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import pro.sky.skyprospringcoursetwohomeworkeight.Employee;
 import pro.sky.skyprospringcoursetwohomeworkeight.service.EmployeeService;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,16 +15,36 @@ public class DepartmenService {
         this.employeeService = employeeService;
     }
 
-    public Employee employeeWithSalaryMax(int departmen) {
+    public Employee employeeWithSalaryMax(int departmentId) {
         return employeeService.printData().values().stream()
-                .filter(employee -> employee.getDepartmentNumber() == departmen)
-                .max((employee1,employee2)->employee1.getSalary()-employee2.getSalary())
+                .filter(employee -> employee.getDepartmentNumber() == departmentId)
+                .max((employee1, employee2) -> employee1.getSalary() - employee2.getSalary())
                 .orElse(null);
     }
-    public List<Employee> employeeFromDepartment( int departmentId){
+
+    public Employee employeeWithSalaryMin(int departmentId) {
+        return employeeService.printData().values().stream()
+                .filter(employee -> employee.getDepartmentNumber() == departmentId)
+                .min((employee1, employee2) -> employee1.getSalary() - employee2.getSalary())
+                .orElse(null);
+
+    }
+
+    public List<Employee> employeeFromDepartment(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
                 .collect(Collectors.toList());
 
     }
+
+    //   Возвращать всех сотрудников  с разделением по отделам.
+    public List<Employee> allEmployeesByDepartmentId() {
+     return employeeService.printData().values().stream()
+             .collect(Collectors.toList());
+               // .collect(Collectors.groupingBy(Employee::getDepartmentNumber));
+
+    }
+
+
+    //-//-/
 }

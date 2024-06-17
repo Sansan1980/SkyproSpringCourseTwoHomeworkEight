@@ -5,7 +5,6 @@ import pro.sky.skyprospringcoursetwohomeworkeight.Employee;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeAlreadyAddedException;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeNotFoundException;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeStorageIsFullException;
-import pro.sky.skyprospringcoursetwohomeworkeight.service.EmployeeService;
 
 import java.util.*;
 
@@ -17,13 +16,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     // private static List<Employee> employeesList = new ArrayList<>();
     private static Map<String, Employee> employeesMap = new HashMap<>();
 
-
     public String addEmployee(String name, String surname, int salary, int departmentNumber) {
         if (employeesMap.size() >= 11) {
             throw new EmployeeStorageIsFullException();
         }
 
         if (employeesMap.containsKey(key(name, surname))) {
+           System.out.println("Такой сотрудник существуеет");;
             throw new EmployeeAlreadyAddedException();
         }
         employeesMap.put(key(name, surname), new Employee(name, surname, salary, departmentNumber));
@@ -41,17 +40,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!employeesMap.containsKey(key(name, surname))) {
             throw new EmployeeNotFoundException();
         }
-        return employeesMap.get(key(name, surname));
+        return employeesMap.get(key(name, surname));//возврвщаем Employee причем тут key? что за метод get?
     }
 
 //   }
 
-    public void deleteEmployee(String name, String surname) {
+    public String deleteEmployee(String name, String surname) {
         //  Employee employee = new Employee(name, surname);
         if (!employeesMap.containsKey(key(name, surname))) {
             throw new EmployeeNotFoundException();
         }
         employeesMap.remove(key(name, surname));
+        return "Удалены  данные " + name + " " + surname;
 
     }
 
@@ -76,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Collection<Employee> values = employeesMap.values();
         // String s1 = String.format("%s%n%s","\n", keys);
         return "Значения :" + values + lineSeparator() +
-                "Ключи : " + keys;  // непонимаю как вернуть на страницу браузера две строки на разных строках "значенbя-Employee" b "ключи-keys"
+                "Ключи : " + keys;  // непонимаю как вернуть на страницу браузера две строки на разных строках "значенbя-Employee" b "ключи-keys" //return "fdfsdfsdfsd<br>ddsfsdfsd";
 
     }
 //--//--

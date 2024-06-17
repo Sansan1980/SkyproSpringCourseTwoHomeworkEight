@@ -5,6 +5,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 
 public class Employee {
+    private String name;
+    private String surname;
+    private int salary;
+    private int departmentNumber;
+
+
+    public Employee(String name, String surname, int salary, int departmentNumber) {
+        this.name = name;
+     //   this.surname = surname;
+        this.salary = salary;
+        this.departmentNumber = departmentNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    @JsonIgnore
+    public String getFulName() {
+
+        return name + ", " + surname;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -29,39 +56,14 @@ public class Employee {
         this.departmentNumber = departmentNumber;
     }
 
-    private String name;
-    private String surname;
-    private int salary;
-    private int departmentNumber;
-
-
-
-    public Employee(String name, String surname,int salary,int departmentNumber ) {
-        this.name = name;
-        this.surname = surname;
-        this.salary = salary;
-        this.departmentNumber = departmentNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    @JsonIgnore
-    public String getFulName() {
-
-        return name + ", " + surname;
-    }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", salary=" + salary +
+                ", departmentNumber=" + departmentNumber +
                 '}';
     }
 
@@ -70,11 +72,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
+        return salary == employee.salary && departmentNumber == employee.departmentNumber &&
+                Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname);
+        return Objects.hash(name, surname, salary, departmentNumber);
     }
 }
