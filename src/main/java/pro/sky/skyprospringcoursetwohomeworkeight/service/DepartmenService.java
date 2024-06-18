@@ -7,6 +7,7 @@ import pro.sky.skyprospringcoursetwohomeworkeight.service.EmployeeService;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 @Service
 public class DepartmenService {
     private final EmployeeService employeeService;
@@ -25,8 +26,8 @@ public class DepartmenService {
     public Employee employeeWithSalaryMin(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
-                .min((employee1, employee2) -> employee1.getSalary() - employee2.getSalary())
-                .orElse(null);
+                .min(Comparator.comparingInt(Employee::getSalary))
+                .orElse(null);//orElseThrow();//сделать лямбду исключение
 
     }
 
@@ -38,10 +39,10 @@ public class DepartmenService {
     }
 
     //   Возвращать всех сотрудников  с разделением по отделам.
-    public List<Employee> allEmployeesByDepartmentId() {
-     return employeeService.printData().values().stream()
-             .collect(Collectors.toList());
-               // .collect(Collectors.groupingBy(Employee::getDepartmentNumber));
+    public Map<Integer, List<Employee>> allEmployeesByDepartmentId() {
+        return employeeService.printData().values().stream()
+                //.collect(Collectors.toList());
+                .collect(Collectors.groupingBy(Employee::getDepartmentNumber));
 
     }
 

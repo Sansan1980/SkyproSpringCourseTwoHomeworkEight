@@ -13,7 +13,7 @@ public class Employee {
 
     public Employee(String name, String surname, int salary, int departmentNumber) {
         this.name = name;
-     //   this.surname = surname;
+        this.surname = surname;
         this.salary = salary;
         this.departmentNumber = departmentNumber;
     }
