@@ -1,4 +1,4 @@
-package pro.sky.skyprospringcoursetwohomeworkeight;
+package pro.sky.skyprospringcoursetwohomeworkeight.exception;
 
 public class EmployeeAlreadyAddedException extends RuntimeException{
     public EmployeeAlreadyAddedException() {
