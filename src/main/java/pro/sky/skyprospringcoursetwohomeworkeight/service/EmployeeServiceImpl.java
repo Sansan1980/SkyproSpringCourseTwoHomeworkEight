@@ -1,33 +1,43 @@
 package pro.sky.skyprospringcoursetwohomeworkeight.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.sky.skyprospringcoursetwohomeworkeight.Employee;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeAlreadyAddedException;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeNotFoundException;
 import pro.sky.skyprospringcoursetwohomeworkeight.exception.EmployeeStorageIsFullException;
+//import pro.sky.skyprospringcoursetwohomeworkeight.validation.ValidationString;
 
 import java.util.*;
 
 import static java.lang.System.*;
+/*import static pro.sky.skyprospringcoursetwohomeworkeight.validation.ValidationString.validationString;*/
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     // private static List<Employee> employeesList = new ArrayList<>();
-    private static Map<String, Employee> employeesMap = new HashMap<>();
+    final private Map<String, Employee> employeesMap = new HashMap<>();
+    // @Autowired
+/*final private ValidationString validationString ;
+
+    public EmployeeServiceImpl(ValidationString validationString) {
+        this.validationString = validationString;
+
+    }*/
 
     public String addEmployee(String name, String surname, int salary, int departmentNumber) {
         if (employeesMap.size() >= 11) {
             throw new EmployeeStorageIsFullException();
         }
-
+//        name =validationString.validationString(name);
         if (employeesMap.containsKey(key(name, surname))) {
-           System.out.println("Такой сотрудник существуеет");;
-            throw new EmployeeAlreadyAddedException();
+            System.out.println("Такой сотрудник уже существуеет");//почемуто в браузер текст невыводит только в консоль!!!
+           // throw new EmployeeAlreadyAddedException();
+
         }
         employeesMap.put(key(name, surname), new Employee(name, surname, salary, departmentNumber));
         return "Введенны новые данные " + name + " " + surname;
-
     }
 
     // public void findEmployee(String name, String surname) {

@@ -2,20 +2,20 @@ package pro.sky.skyprospringcoursetwohomeworkeight.service;
 
 import org.springframework.stereotype.Service;
 import pro.sky.skyprospringcoursetwohomeworkeight.Employee;
-import pro.sky.skyprospringcoursetwohomeworkeight.service.EmployeeService;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Service
-public class DepartmenService {
-    private final EmployeeService employeeService;
+public class DepartmenServiceImpl implements DepartmenServiceSSSS {
+    private final EmployeeService employeeService ;
 
-    public DepartmenService(EmployeeService employeeService) {
+    public DepartmenServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
+    @Override
     public Employee employeeWithSalaryMax(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -23,6 +23,7 @@ public class DepartmenService {
                 .orElse(null);
     }
 
+    @Override
     public Employee employeeWithSalaryMin(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -31,6 +32,7 @@ public class DepartmenService {
 
     }
 
+    @Override
     public List<Employee> employeeFromDepartment(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -39,6 +41,7 @@ public class DepartmenService {
     }
 
     //   Возвращать всех сотрудников  с разделением по отделам.
+    @Override
     public Map<Integer, List<Employee>> allEmployeesByDepartmentId() {
         return employeeService.printData().values().stream()
                 //.collect(Collectors.toList());
