@@ -8,14 +8,13 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class DepartmenServiceImpl implements DepartmenServiceSSSS {
-    private final EmployeeService employeeService ;
+public class DepartmentServiceImpl implements DepartmentServise{
+    private final EmployeeService employeeService;
 
-    public DepartmenServiceImpl(EmployeeService employeeService) {
+    public DepartmentServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    @Override
     public Employee employeeWithSalaryMax(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -23,7 +22,6 @@ public class DepartmenServiceImpl implements DepartmenServiceSSSS {
                 .orElse(null);
     }
 
-    @Override
     public Employee employeeWithSalaryMin(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -32,7 +30,6 @@ public class DepartmenServiceImpl implements DepartmenServiceSSSS {
 
     }
 
-    @Override
     public List<Employee> employeeFromDepartment(int departmentId) {
         return employeeService.printData().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
@@ -40,8 +37,8 @@ public class DepartmenServiceImpl implements DepartmenServiceSSSS {
 
     }
 
+
     //   Возвращать всех сотрудников  с разделением по отделам.
-    @Override
     public Map<Integer, List<Employee>> allEmployeesByDepartmentId() {
         return employeeService.printData().values().stream()
                 //.collect(Collectors.toList());
