@@ -16,22 +16,22 @@ public class DepartmentServiceImpl implements DepartmentServise{
     }
 
     public Employee employeeWithSalaryMax(int departmentId) {
-        return employeeService.printData().values().stream()
+        return employeeService.representsDataAllEmployees().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
                 .max((employee1, employee2) -> employee1.getSalary() - employee2.getSalary())
-                .orElse(null);
+                .orElseThrow();
     }
 
     public Employee employeeWithSalaryMin(int departmentId) {
-        return employeeService.printData().values().stream()
+        return employeeService.representsDataAllEmployees().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
                 .min(Comparator.comparingInt(Employee::getSalary))
-                .orElse(null);//orElseThrow();//сделать лямбду исключение
+                .orElseThrow();
 
     }
 
     public List<Employee> employeeFromDepartment(int departmentId) {
-        return employeeService.printData().values().stream()
+        return employeeService.representsDataAllEmployees().values().stream()
                 .filter(employee -> employee.getDepartmentNumber() == departmentId)
                 .collect(Collectors.toList());
 
@@ -40,8 +40,7 @@ public class DepartmentServiceImpl implements DepartmentServise{
 
     //   Возвращать всех сотрудников  с разделением по отделам.
     public Map<Integer, List<Employee>> allEmployeesByDepartmentId() {
-        return employeeService.printData().values().stream()
-                //.collect(Collectors.toList());
+        return employeeService.representsDataAllEmployees().values().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentNumber));
 
     }

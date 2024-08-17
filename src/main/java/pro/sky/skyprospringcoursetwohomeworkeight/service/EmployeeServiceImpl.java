@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
-    public Map<String, Employee> printData() {
+    public Map<String, Employee> representsDataAllEmployees() {
         return employeesMap;
     }
 
@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-    public String addPrintEmployeeKey() {
+    public String representsDataAllEmployeesEmployeeKey() {
         Set<String> keys = employeesMap.keySet();
         Collection<Employee> values = employeesMap.values();
         return "Значения :" + values + lineSeparator() +

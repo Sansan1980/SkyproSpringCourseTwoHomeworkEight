@@ -35,14 +35,14 @@ public class EmpioyeeController {
         employeeService.deleteEmployee(name, surname);
     }
 
-    @GetMapping(path = ("/printData"))
-    public Map<String, Employee> printData() {
-        return employeeService.printData();
+    @GetMapping(path = ("/representsDataAllEmployees"))
+    public Map<String, Employee> representsDataAllEmployees() {
+        return employeeService.representsDataAllEmployees();
     }
 
-    @GetMapping(path = ("/addPrintEmployeeKey"))
-    public String addPrintEmployee() {
-     return    employeeService.addPrintEmployeeKey();
+    @GetMapping(path = ("/representsDataAllEmployeesEmployeeKey"))
+    public String representsDataAllEmployeesEmployeeKey() {
+     return    employeeService.representsDataAllEmployeesEmployeeKey();
     }
     }
 

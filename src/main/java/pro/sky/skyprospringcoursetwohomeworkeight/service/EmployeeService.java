@@ -12,7 +12,7 @@ public interface EmployeeService {
 
     String deleteEmployee(String name, String surname);
 
-    Map<String, Employee> printData();
+    Map<String, Employee> representsDataAllEmployees();
 
-    String addPrintEmployeeKey();
+    String representsDataAllEmployeesEmployeeKey();
 }
